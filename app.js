@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: ["http://localhost:10000", "https://echonest-01.onrender.com","http://13.60.40.242"],
+    origin: ["http://localhost:10000","http://13.60.40.242"],
     credentials: true,
 }));
 
