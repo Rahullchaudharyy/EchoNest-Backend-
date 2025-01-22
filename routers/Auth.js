@@ -92,6 +92,7 @@ authRouter.post('/api/auth/signin', async (req, res) => {
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production',  
             sameSite: 'none', 
+            domain:'http://13.60.40.242'
         });
         
         
