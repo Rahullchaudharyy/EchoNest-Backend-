@@ -17,7 +17,6 @@ app.use(cors({
 }));
 
 
-// ["https://echonest-01.onrender.com","http://192.168.0.105:10000"]
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
