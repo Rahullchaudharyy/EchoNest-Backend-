@@ -88,12 +88,20 @@ authRouter.post('/api/auth/signin', async (req, res) => {
         // res.cookie('token', token);
 
 
+        // res.cookie('token', token, {
+        //     httpOnly: true, 
+        //     secure: process.env.NODE_ENV === 'production',  
+        //     sameSite: 'none', 
+        //     // domain:'http://13.60.40.242'
+        // });
+
         res.cookie('token', token, {
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production',  
-            sameSite: 'none', 
-            // domain:'http://13.60.40.242'
+            sameSite: 'None', 
+            maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
         });
+        
         
         
         res.status(201).json({
