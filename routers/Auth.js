@@ -95,6 +95,13 @@ authRouter.post('/api/auth/signin', async (req, res) => {
         //     // domain:'http://13.60.40.242'
         // });
 
+        // res.cookie('token', token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: 'none',
+        //     // domain:'http://13.60.40.242'
+        // });
+
 
         res.status(201).json({
             message: `Welcome ${user.firstName} You successfully loggedIn`,
