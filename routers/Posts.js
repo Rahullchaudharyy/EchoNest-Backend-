@@ -433,7 +433,6 @@ PostRoute.get('/api/post/comment/:commentId/replies', validateAuth, async (req, 
         })
     }
 })
-
 PostRoute.get('/api/posts/:userId', async (req, res) => {
     try {
         const id = req.params.userId
@@ -562,8 +561,8 @@ PostRoute.get('/api/authours/top', async (req, res) => {
         ]);
 
         // Step 5: Populate user details
-        const populatedUsers = await User.populate(topUsers, { 
-            path: "_id", 
+        const populatedUsers = await User.populate(topUsers, {
+            path: "_id",
             select: "username profileUrl firstName lastName emailId bio"
         });
 

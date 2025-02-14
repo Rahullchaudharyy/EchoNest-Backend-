@@ -4,19 +4,24 @@ import { User } from '../models/User.model.js'
 import { config, configDotenv } from 'dotenv';
 configDotenv()
 
-const validateAuth = async (req,res,next)=>{
+const validateAuth = async (req, res, next) => {
     try {
-        const cookeis = req.cookies;
-        const {token} = cookeis;
-        if (!token) {
-            throw new Error("Invalid Token !! ");
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            throw new Error("Invalid Token!!");
         }
-        const decodedMessage = jwt.verify(token,process.env.JWT_SECRET_KEY)
-        const user = await User.findOne({_id:decodedMessage._id})
-        
-        if(!user){
+
+        const token = authHeader.split(" ")[1];
+
+        // if (!token) {
+        //     throw new Error("Invalid Token !! ");
+        // }
+        const decodedMessage = jwt.verify(token, process.env.JWT_SECRET_KEY)
+        const user = await User.findOne({ _id: decodedMessage._id })
+
+        if (!user) {
             throw new Error("User Not Found");
-            
+
         }
         req.user = user
         next()
@@ -26,4 +31,4 @@ const validateAuth = async (req,res,next)=>{
     }
 }
 
-export {validateAuth}
+export { validateAuth }
