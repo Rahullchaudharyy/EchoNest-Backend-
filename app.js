@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: ["http://localhost:10000","http://13.60.40.242"],
+    origin: ["http://localhost:10000", "http://13.60.40.242", "https://echonest-01.onrender.com"],
     credentials: true,
 }));
 
@@ -22,13 +22,13 @@ app.use((req, res, next) => {
     next();
 });
 
-conectDB().then(()=>{
-    app.listen(process.env.PORT,()=>{
+conectDB().then(() => {
+    app.listen(process.env.PORT, () => {
         console.log(`🚀 Server is up and running at http://localhost:${process.env.PORT}`);
     })
 })
-app.use('/',authRouter)
-app.use('/',ProfileRouter)
-app.use('/',PostRoute)
+app.use('/', authRouter)
+app.use('/', ProfileRouter)
+app.use('/', PostRoute)
 
 
